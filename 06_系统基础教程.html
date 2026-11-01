@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="contentType" content="Tutorial">
+<title>工业机器视觉系统基础课：从Python到实验与部署</title>
+<style>
+:root{--ink:#17363c;--muted:#516b6d;--bg:#eef1ec;--paper:#fffef9;--line:#d7e2d7;--dark:#16383f;--accent:#d9633d;--green:#246952;--mint:#e6f1e7;--gold:#f7e9cb;--font:"Microsoft YaHei","PingFang SC","Noto Sans CJK SC",sans-serif;--mono:Consolas,"Cascadia Code",monospace}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.95 var(--font)}a{color:#176a52;text-underline-offset:3px}a:hover{color:#ae4a29}a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #d9633d;outline-offset:3px}.skip{position:absolute;top:4px;left:-9999px;background:#fff;z-index:99;padding:8px}.skip:focus{left:8px}.bar{position:fixed;top:0;left:0;width:0;height:4px;background:var(--accent);z-index:20}.hero{background:var(--dark);color:#f7fbf1;padding:52px max(5vw,25px)}.hero-inner{max-width:1350px;margin:auto;display:grid;grid-template-columns:1.3fr .7fr;gap:35px;align-items:center}.tag{color:#b8d8c4;font:700 13px var(--mono);letter-spacing:.12em}.hero h1{font-size:clamp(32px,4vw,54px);line-height:1.32;margin:20px 0}.hero h1 em{font-style:normal;color:#ffb58d;display:inline-block}.hero p{color:#e1eadf;max-width:670px}.cover-card{border:1px solid #608579;border-radius:14px;padding:24px;background:#204c4b}.cover-card strong{display:block;color:#ffcfad;font-size:18px}.cover-card ol{padding-left:21px;margin-bottom:0}.cover-card li{margin:8px 0;color:#e7f1e3}.layout{max-width:1400px;margin:0 auto;display:grid;grid-template-columns:245px minmax(0,1fr);gap:28px;padding:28px 28px 70px}.side{position:sticky;top:20px;max-height:calc(100vh - 40px);overflow:auto;background:#f8faf4;border:1px solid var(--line);border-radius:12px;padding:18px 12px}.side h2{font-size:12px;letter-spacing:.1em;color:#647f72;margin:0 8px 10px}.side a{display:block;font-size:14px;line-height:1.55;padding:6px 9px;border-radius:6px;color:#3d5a51;text-decoration:none}.side a:hover{background:var(--mint)}.side p{font-size:13px;color:#657d70;margin:12px 8px}.mobile-nav{display:none}main{min-width:0}.notice,.chapter{border:1px solid var(--line);border-radius:13px;background:var(--paper);padding:30px clamp(22px,4vw,45px);margin-bottom:20px;scroll-margin-top:15px}.notice{background:var(--gold);border-color:#ecd7a7}.chapter-label{display:inline-block;font:700 12px var(--mono);color:#a94c2d;background:#fae6d9;border-radius:5px;padding:6px 8px}.chapter h2{font-size:clamp(23px,2.6vw,30px);line-height:1.4;margin:13px 0 17px}.chapter h3{font-size:19px;margin:28px 0 8px}.chapter p{margin:12px 0}.lead{font-size:18px;color:#355c4e}.box,.work,.caution{padding:16px 19px;margin:20px 0;border-radius:9px}.box{background:#eff6ec;border-left:4px solid #7da887}.work{background:#edf3f5;border-left:4px solid #5b94a0}.caution{background:#fff1e5;border-left:4px solid var(--accent)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.tile{border:1px solid var(--line);border-radius:9px;padding:15px;background:#f9fbf7}.tile b{display:block}.flow{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:18px 0}.flow span{background:var(--mint);border:1px solid #c5dccc;padding:7px 10px;border-radius:6px;font-size:14px}.flow b{color:var(--accent)}.tablewrap{overflow:auto;margin:20px 0}table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.7}th,td{text-align:left;vertical-align:top;border:1px solid #d2ded1;padding:10px 12px}th{background:#e6efe4}tr:nth-child(even) td{background:#f9fbf7}code{font:0.88em var(--mono);background:#e9eee7;padding:2px 4px;border-radius:3px}pre{background:#19383c;color:#e9f5e7;border-radius:9px;padding:16px;overflow:auto;line-height:1.65;font:13px/1.65 var(--mono)}pre code{background:none;padding:0;color:inherit}.codebar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:-8px;color:#567267;font-size:13px}.copy{border:1px solid #b6cec0;background:#fff;color:#215a49;border-radius:6px;padding:5px 10px;cursor:pointer}.copy:focus-visible{outline:3px solid var(--accent)}details{border:1px solid #d0e0d0;border-radius:8px;background:#f8fbf5;margin:13px 0}summary{cursor:pointer;font-weight:700;padding:12px 15px;color:#245d49}details>div{padding:0 15px 15px}details p:first-child{margin-top:0}.complete{display:flex;gap:10px;background:#e7f2e5;border-radius:8px;padding:13px 15px;margin-top:24px;font-size:14px}.complete input{width:18px;height:18px;accent-color:var(--green);margin:6px 0 0;flex:none}.complete label{cursor:pointer}.muted{color:var(--muted);font-size:14px}.formula{padding:12px 16px;background:#edf3eb;border-radius:8px;font-family:var(--mono);overflow:auto;white-space:pre-wrap}.answer{font-size:15px}.footer{max-width:1350px;margin:auto;padding:0 30px 45px;color:#5b7469;font-size:13px}.btn{display:inline-block;border:1px solid #aac7b4;border-radius:7px;background:#fff;color:#205a48;padding:6px 11px;text-decoration:none;cursor:pointer}.progress-num{font-size:13px;color:#647a6d}.source-list{overflow-wrap:anywhere}.hero a{color:#d4ede0}.hero .btn{color:#164a38;background:#e2f1df}.chapter li{margin:7px 0}
+@media(max-width:900px){.hero-inner{grid-template-columns:1fr}.cover-card{max-width:600px}.layout{display:block;padding:18px 12px 55px}.side{display:none}.mobile-nav{display:block}.mobile-nav nav{display:grid;grid-template-columns:1fr 1fr;gap:6px 15px;padding:0 15px 16px}.mobile-nav a{font-size:14px}.chapter,.notice{padding:23px 18px}.grid{grid-template-columns:1fr}}
+@media(max-width:560px){.hero{padding:42px 20px}.hero h1{font-size:32px}.mobile-nav nav{grid-template-columns:1fr}.tablewrap table{min-width:560px}.cover-card{padding:17px}.chapter h2{font-size:23px}}
+@media print{body{background:#fff}.hero{background:white;color:#17363c;padding:0}.hero p,.cover-card strong,.cover-card li{color:#17363c}.cover-card,.side,.mobile-nav,.complete,.copy,.bar{display:none}.layout{display:block;padding:0}.chapter,.notice{border:0;border-bottom:1px solid #ddd;border-radius:0;padding:12px 0}.chapter h2,.chapter h3{break-after:avoid}details>div{display:block}pre{white-space:pre-wrap;color:#111;background:#eee}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head><body><a class="skip" href="#course-start">跳到课程正文</a><div class="bar" id="bar" aria-hidden="true"></div>
+<header class="hero"><div class="hero-inner"><div><div class="tag">FOUNDATIONS / 工业视觉基础课</div><h1>从零散知识，走到<br><em>能理解、能动手。</em></h1><p>为研一入门准备的一套学习教程。从Python、图像和基础数学开始，逐步走到模型训练、工业缺陷检测、异常检测与部署。</p><p>建议每次读一小节，先尝试练习，再看参考答案。八周安排可以按课程和进度调整。</p><a class="btn" href="#course-start">开始学习 ↓</a></div><div class="cover-card"><strong>完成后，你可以做到</strong><ol><li>说明一张工业图片如何成为模型输入。</li><li>自己运行一段完整的PyTorch训练代码。</li><li>看懂检测、异常评分与常见指标。</li><li>解释一次对照实验，以及部署结果的边界。</li></ol></div></div></header>
+<div class="layout"><aside class="side"><h2>课程目录</h2><nav id="toc" aria-label="课程目录"></nav><p id="progress">已完成 0 / 16 节</p><button class="btn" id="reset-progress" type="button">清除学习勾选</button></aside>
+<main id="course-start"><details class="mobile-nav"><summary>展开课程目录与学习进度 <span id="mobile-progress">0 / 16</span></summary><nav id="mobile-toc" aria-label="移动端课程目录"></nav></details>
+<div class="notice"><strong>先说明本教程怎么用：</strong>这是面向你当前方向的基础课程。每节按“要理解什么 → 例子 → 练习 → 答案”组织。代码可复制到自己的新文件中运行；本页可以离线阅读。实际论文结果和人工生成的教学例子会明确标注。</div>
+
+<section class="chapter" id="route" data-title="00 学习路线"><span class="chapter-label">START / 学习路线</span><h2>这套课要解决什么问题？</h2>
+<p class="lead">我们的共同例子是一块可能有划痕的钢板。目标是理解：相机拍到图片后，计算机如何判断问题，以及怎样证明判断可靠。</p>
+<div class="flow"><span>Python与数组</span><b>→</b><span>图像与数据</span><b>→</b><span>训练与卷积</span><b>→</b><span>YOLO与评价</span><b>→</b><span>异常检测</span><b>→</b><span>压缩与部署</span></div>
+<p>如果某个词暂时不懂，可以先查最后的术语表。每节的练习不必一次全做完；学会用自己的语言复述，比背定义更重要。</p>
+<div class="grid"><div class="tile"><b>前4周</b>Python、数组、图片、数据划分和训练基础。</div><div class="tile"><b>后4周</b>检测与评价、异常检测、实验对照和部署边界。</div></div>
+<div class="complete"><input type="checkbox" id="p-route" data-progress><label for="p-route">我知道这套课的学习顺序。</label></div></section>
+
+<section class="chapter" id="python" data-title="01 Python基础"><span class="chapter-label">01 / PYTHON</span><h2>用Python记录和处理一批结果</h2>
+<p>变量给一个值起名字；列表保存一组有顺序的值；字典用“键”查找对应值。缩进告诉Python哪些语句属于同一个代码块。</p>
+<div class="codebar"><span>可运行：Python标准库，不依赖数据集</span><button class="copy" type="button" data-copy="code-python">复制代码</button></div><pre><code id="code-python">scores = [0.12, 0.81, 0.45, 0.92]
+threshold = 0.50
+
+def decide(score, limit):
+    if score &gt;= limit:
+        return "报警"
+    return "放行"
+
+for index, score in enumerate(scores):
+    print(index, score, decide(score, threshold))</code></pre>
+<p>输出的编号从0开始。0.81和0.92达到阈值，输出“报警”。这里的数字是教学示例，函数中的<code>return</code>把结果交回给调用它的地方。</p>
+<div class="work"><strong>怎样动手：</strong>打开记事本，把上面的代码保存为<code>practice_python.py</code>；在该文件所在目录的PowerShell中运行<code>python .\practice_python.py</code>。复制时不要把页面上“可运行”说明一并复制到文件里。</div>
+<details><summary>练习1：把阈值改为0.8，会有几个“报警”？</summary><div><p>两个：0.81和0.92。条件是大于<strong>或等于</strong>阈值；如果有0.80，也会报警。</p></div></details>
+<details><summary>练习2：为什么不能把四个分数的平均值直接称为准确率？</summary><div><p>准确率需要预测结果与真实标签比较；这四个数只是分数，我们没有给出真实标签。</p></div></details>
+<div class="complete"><input type="checkbox" id="p-python" data-progress><label for="p-python">我能修改阈值并解释循环和函数。</label></div></section>
+
+<section class="chapter" id="math" data-title="02 数学直觉"><span class="chapter-label">02 / MATH</span><h2>向量、平均值和梯度：先会解释</h2>
+<p>一个<strong>向量</strong>可以看成一串有顺序的数。设a=[1,2]、b=[3,4]，点积是1×3+2×4=11。模型里的特征和权重经常用向量或数组表示。</p>
+<p><strong>平均值</strong>描述一组数的平均水平，<strong>标准差</strong>描述它们围绕平均值的波动。多次实验的均值与波动应一起看；三个种子只能初步观察波动，不能自动保证结论显著。</p>
+<h3>梯度与学习率</h3><p>假设模型预测ŷ=w×x，给x=2、目标y=4，损失L=(ŷ−y)²。初始w=0时L=16。此时对w的梯度为−16；学习率取0.1，更新w=0−0.1×(−16)=1.6，新预测为3.2，损失为0.64。这个例子只调整一个参数，目的是看懂更新方向。</p>
+<div class="formula">参数新值 = 参数旧值 − 学习率 × 梯度</div>
+<p>偏导数可以理解为：其他变量暂时固定时，某个变量变化会怎样影响结果。神经网络有很多参数；反向传播借助链式法则计算各参数的梯度，优化器再按规则更新。你暂时只需能解释方向与步幅。</p>
+<details><summary>练习：a=[2,1]、b=[3,−1]，点积是多少？</summary><div><p>2×3+1×(−1)=5。</p></div></details>
+<div class="complete"><input type="checkbox" id="p-math" data-progress><label for="p-math">我能手算一个点积，也能说出梯度和学习率的作用。</label></div></section>
+
+<section class="chapter" id="array" data-title="03 数组与张量"><span class="chapter-label">03 / ARRAY</span><h2>把图片当作一个有形状的数字盒子</h2>
+<p>NumPy数组和PyTorch张量都能表示多维数字。<strong>形状shape</strong>告诉你每个方向有多少个数。以RGB图片为例，常见读取顺序是高H×宽W×通道C；PyTorch模型经常用批数N×通道C×高H×宽W。</p>
+<div class="codebar"><span>可运行：需要NumPy</span><button class="copy" type="button" data-copy="code-array">复制代码</button></div><pre><code id="code-array">import numpy as np
+
+a = np.array([[1, 2, 3], [4, 5, 6]])
+print(a.shape)          # (2, 3)：2行3列
+print(a[0, 1])          # 2：第0行第1列
+print(a.mean())         # 3.5
+print(a.mean(axis=0))   # 每列平均：[2.5 3.5 4.5]</code></pre>
+<p>索引从0开始。<code>axis=0</code>对第0个维度计算平均，所以这里得到每列的平均。输入RGB图片到模型前，应核对颜色顺序、形状、数据类型和数值范围；同样叫“归一化”，不同实现也可能使用不同公式。</p>
+<div class="work"><strong>张量练习：</strong>一批4张320×320的RGB图片，采用NCHW顺序时，形状是<code>[4,3,320,320]</code>。如果第一维变成1，表示一次只处理一张图。</div>
+<details><summary>练习：形状[2,3,10,20]的N、C、H、W分别是什么？</summary><div><p>N=2、C=3、H=10、W=20。它可表示2张、每张3通道、高10宽20的数据。</p></div></details>
+<div class="complete"><input type="checkbox" id="p-array" data-progress><label for="p-array">我能看懂一个数组和一批图片的形状。</label></div></section>
+
+<section class="chapter" id="image" data-title="04 图像与成像"><span class="chapter-label">04 / IMAGE</span><h2>相机图片和模型输入之间发生了什么？</h2>
+<p>光源照到工件，表面反射光经过镜头，被传感器转换为数字。光源角度、曝光、增益、反光和工件位置会改变成像。一张8位灰度图片的像素常为0—255；其他数据可能采用不同位深。</p>
+<div class="flow"><span>光源与工件</span><b>→</b><span>镜头、传感器</span><b>→</b><span>颜色/格式转换</span><b>→</b><span>缩放与归一化</span><b>→</b><span>模型输入</span></div>
+<p>OpenCV常见的彩色读取顺序为BGR，许多模型或可视化流程使用RGB；具体以代码为准。一个常见转换为<code>cv2.cvtColor(image, cv2.COLOR_BGR2RGB)</code>。应先检查读取是否成功，再访问图片形状。</p>
+<div class="codebar"><span>可运行：需要NumPy和OpenCV；合成图片，无需相机</span><button class="copy" type="button" data-copy="code-image">复制代码</button></div><pre><code id="code-image">import numpy as np
+import cv2
+
+bgr = np.zeros((2, 3, 3), dtype=np.uint8)
+bgr[0, 0] = [255, 0, 0]  # BGR：这个像素是蓝色
+rgb = cv2.cvtColor(bgr, cv2.COLOR_BGR2RGB)
+print("形状:", rgb.shape)       # (2, 3, 3)
+print("转换后:", rgb[0, 0])    # [0 0 255]，RGB中的蓝色</code></pre>
+<p>一条划痕在原图只占几像素时，缩小图片可能使它模糊。先可视化缩放后的图片，再比较不同输入尺寸的召回与运行成本。</p>
+<details><summary>练习：在电脑上把图片亮度乘0.6，能完全代替真实降低曝光吗？</summary><div><p>不能。它适合做可控的数字扰动；真实曝光还可能改变噪声、饱和和反光，应另做相机采集验证。</p></div></details>
+<div class="complete"><input type="checkbox" id="p-image" data-progress><label for="p-image">我知道颜色顺序和成像条件为什么会影响模型。</label></div></section>
+
+<section class="chapter" id="datasets" data-title="05 标签与数据集"><span class="chapter-label">05 / DATA</span><h2>分类、检测、分割各需要什么标签？</h2>
+<div class="tablewrap"><table><thead><tr><th>任务</th><th>问题</th><th>常见标签</th></tr></thead><tbody><tr><td>分类</td><td>图片有没有缺陷？</td><td>整张图的类别。</td></tr><tr><td>目标检测</td><td>缺陷在哪里、属于哪类？</td><td>类别和矩形框。</td></tr><tr><td>分割</td><td>具体哪些像素属于缺陷？</td><td>像素级掩码。</td></tr><tr><td>正常样本异常检测</td><td>哪里偏离正常外观？</td><td>常见设置以正常图训练；测试要有评价标签。</td></tr></tbody></table></div>
+<p><strong>训练集</strong>用于更新参数；<strong>验证集</strong>用于开发阶段选择配置；<strong>测试集</strong>用于方案确定后的评价。同一工件的连续帧若混入不同集合，结果可能偏乐观，应考虑按工件/批次分组。</p>
+<p>增强是在训练中产生合理变化，例如允许范围内的亮度或翻转；先划分再对训练集增强。是否允许旋转取决于任务：具有方向要求的工件，旋转可能改变标签含义。</p>
+<div class="box"><strong>本机已有数据：</strong>NEU-DET课程项目包含1800张图像，使用自建1260/270/270训练、验证、测试划分；它不是官方统一划分。项目做过重复图片分组和标注检查。正式论文比较仍要检查对方划分和评价条件。</div>
+<details><summary>练习：同一个零件连续拍摄20帧，能否把前10帧训练、后10帧测试？</summary><div><p>这样很容易让测试图与训练图过于相似。更可靠的起点是按零件或采集批次分组，保证测试对象独立。</p></div></details>
+<div class="complete"><input type="checkbox" id="p-datasets" data-progress><label for="p-datasets">我能解释标签与三个数据集合的用途。</label></div></section>
+
+<section class="chapter" id="training" data-title="06 模型训练"><span class="chapter-label">06 / TRAIN</span><h2>模型为什么能从错误中改进？</h2>
+<div class="flow"><span>样本和标签</span><b>→</b><span>前向预测</span><b>→</b><span>损失函数</span><b>→</b><span>反向传播</span><b>→</b><span>参数更新</span></div>
+<p>模型是带参数的函数。<strong>前向</strong>根据当前参数得到预测；损失函数衡量训练目标上的偏差；<strong>反向传播</strong>计算损失对参数的梯度；优化器按学习率等设置更新参数。</p>
+<p>一轮epoch通常指遍历一次训练集。batch是每次同时处理的一批样本；例如100张图、batch20、不丢最后一批，一轮5次更新。最后一批不满、梯度累积或重复采样时，更新次数可能不同，应该查看实际代码和日志。</p>
+<p><strong>过拟合</strong>是对训练数据拟合得较好，但对未见样本的表现不理想。可以同时观察训练和验证曲线，检查泄漏、数据代表性与模型复杂度；仅看训练loss下降不足以证明泛化。</p>
+<div class="caution">训练阶段与推理阶段不同。PyTorch的<code>train()</code>和<code>eval()</code>会影响如BatchNorm、Dropout等层；评价时还要用<code>no_grad()</code>等关闭梯度记录。具体行为以代码为准。</div>
+<details><summary>练习：loss从0.8降到0.2，就能说测试准确率一定提高了吗？</summary><div><p>不能。它只说明记录的训练损失下降；测试表现要按预先固定的评价流程测量。</p></div></details>
+<div class="complete"><input type="checkbox" id="p-training" data-progress><label for="p-training">我能讲清前向、loss、反向传播和参数更新。</label></div></section>
+
+<section class="chapter" id="cnn" data-title="07 卷积网络"><span class="chapter-label">07 / CNN</span><h2>卷积怎样把局部数字变成特征？</h2>
+<p>卷积可以想成小窗口在图像上移动，每个位置做乘法和加法。不同权重对局部图案产生不同响应；多层网络把局部响应逐步组合起来。</p>
+<div class="formula">局部图片：[[1, 2], [3, 4]]
+权重：    [[1, 0], [0, -1]]
+乘加结果：1×1 + 2×0 + 3×0 + 4×(-1) = -3</div>
+<p>这里只演示一次乘加，不代表−3就是缺陷。<strong>通道</strong>可以理解为一组特征图；<strong>步幅</strong>决定窗口每次移动多少；<strong>填充</strong>是在边界补值以控制输出形状。下采样缩小特征图，可能减少计算，也可能损失微小缺陷细节。</p>
+<div class="work"><strong>对应代码：</strong><code>Conv2d(3,16,kernel_size=3,padding=1)</code>表示输入3通道、输出16通道，3×3卷积核，其他默认条件下高宽保持不变。</div>
+<details><summary>练习：输入[2,3,64,64]经过上面的卷积，输出形状是什么？</summary><div><p>[2,16,64,64]。批数2不变，输出通道16；默认步幅1且padding1，高宽保持64。</p></div></details>
+<div class="complete"><input type="checkbox" id="p-cnn" data-progress><label for="p-cnn">我能解释卷积窗口、特征图和通道。</label></div></section>
+
+<section class="chapter" id="pytorch" data-title="08 PyTorch完整小实验"><span class="chapter-label">08 / HANDS-ON</span><h2>亲手完成一遍训练、验证和测试</h2>
+<p class="lead">下面是一段可独立运行的CPU示例：生成二维数字，训练一个小分类器。它让你理解训练流程，数据不是钢板图片，结果不能用于声称工业检测性能。</p>
+<p>步骤：复制代码，保存为新目录下的<code>toy_train.py</code>；在装有PyTorch的环境中运行<code>python .\toy_train.py</code>。程序会在当前目录生成<code>toy_model.pth</code>；若文件已存在会停止，防止覆盖。训练只用180个样本；30个用于验证，30个最终测试。</p>
+<div class="codebar"><span>完整代码：CPU、合成数据、无需下载</span><button class="copy" type="button" data-copy="code-train">复制代码</button></div><pre><code id="code-train">from pathlib import Path
+import torch
+from torch import nn
+from torch.utils.data import DataLoader, TensorDataset
+
+# 先检查目标文件，避免重复运行时覆盖已有权重
+checkpoint = Path("toy_model.pth")
+if checkpoint.exists():
+    raise FileExistsError("toy_model.pth已存在；请换一个新目录")
+
+# 1. 固定随机种子，生成教学用数据，不是工业图片
+torch.manual_seed(42)
+torch.set_num_threads(1)
+g = torch.Generator().manual_seed(42)
+x = torch.randn(240, 2, generator=g)
+noise = 0.25 * torch.randn(240, generator=g)
+y = (x[:, 0] + 0.8 * x[:, 1] + noise &gt; 0).long()
+order = torch.randperm(240, generator=g)
+train_id, val_id, test_id = order[:180], order[180:210], order[210:]
+
+train_data = TensorDataset(x[train_id], y[train_id])
+train_loader = DataLoader(train_data, batch_size=20,
+                          shuffle=True, num_workers=0)
+
+# 2. 输入2个数；输出2个类别的原始分数（logits）
+model = nn.Sequential(nn.Linear(2, 16), nn.ReLU(), nn.Linear(16, 2))
+loss_fn = nn.CrossEntropyLoss()
+optimizer = torch.optim.SGD(model.parameters(), lr=0.1)
+
+def accuracy(features, labels):
+    model.eval()
+    with torch.no_grad():
+        logits = model(features)
+        predicted = logits.argmax(dim=1)
+        return (predicted == labels).float().mean().item()
+
+# 3. 一批训练：清梯度 → 前向 → loss → 反向 → 更新
+for epoch in range(30):
+    model.train()
+    total_loss, seen = 0.0, 0
+    for features, labels in train_loader:
+        optimizer.zero_grad()
+        logits = model(features)
+        loss = loss_fn(logits, labels)
+        loss.backward()
+        optimizer.step()
+        total_loss += loss.item() * len(labels)
+        seen += len(labels)
+    if (epoch + 1) % 10 == 0:
+        print(f"epoch={epoch+1}, loss={total_loss/seen:.4f}, "
+              f"val_acc={accuracy(x[val_id], y[val_id]):.3f}")
+
+# 4. 训练设置事先固定；测试集只在结束后评价一次
+test_acc = accuracy(x[test_id], y[test_id])
+print(f"test_acc={test_acc:.3f}  (教学合成数据)")
+
+# 5. 保存参数，然后建立同结构模型重新加载
+with checkpoint.open("xb") as file:
+    torch.save(model.state_dict(), file)
+reloaded = nn.Sequential(nn.Linear(2, 16), nn.ReLU(), nn.Linear(16, 2))
+with checkpoint.open("rb") as file:
+    reloaded.load_state_dict(torch.load(file, map_location="cpu",
+                                        weights_only=True))
+model.eval()
+reloaded.eval()
+with torch.no_grad():
+    assert torch.allclose(model(x[test_id]), reloaded(x[test_id]))
+print("保存与重载：相同输入输出一致")</code></pre>
+<div class="box"><strong>逐行对照：</strong><code>TensorDataset</code>把输入和标签配对；<code>DataLoader</code>按批提供训练数据；<code>CrossEntropyLoss</code>接收原始logits和整数类别标签；<code>argmax</code>选分数最高的类别。保存的只是参数，重新加载时必须重建相同结构。</div>
+<p>该示例使用PyTorch 2.5.1在本机CPU验证；不同版本或平台的输出可能略有差异。它展示固定流程，不代表其他机器或GPU的实验已完成。</p>
+<details><summary>练习1：240个样本怎样分为训练、验证、测试？</summary><div><p>先打乱索引，再按180、30、30分割；三组索引不重叠。</p></div></details>
+<details><summary>练习2：为什么不在每一轮用测试结果挑模型？</summary><div><p>测试集用于方案锁定后的评价；反复根据测试结果选设置，会让它参与开发并造成偏乐观。</p></div></details>
+<div class="complete"><input type="checkbox" id="p-pytorch" data-progress><label for="p-pytorch">我能指认代码中的数据、模型、损失、优化器和测试步骤。</label></div></section>
+
+<section class="chapter" id="yolo" data-title="09 YOLO检测"><span class="chapter-label">09 / YOLO</span><h2>把缺陷放进框：检测的输入和输出</h2>
+<p>目标检测要同时回答“是什么”和“在哪里”。模型输出候选框、类别和分数；后处理会筛选候选框，常用NMS减少重复框。</p>
+<p>在一种常见YOLO标签格式中，一行是<code>类别 x中心 y中心 宽 高</code>，四个坐标按图片宽高归一化。例如320×320图片中：<code>0 0.5 0.5 0.2 0.4</code>表示类别0、中心(160,160)、宽64、高128，对应左上(128,96)、右下(192,224)。其他数据格式可能不同，要检查实际数据转换代码。</p>
+<p><strong>IoU</strong>是两个区域交集面积除以并集面积。它用来衡量预测框和真实框的重叠程度；NMS也会用某种重叠规则去除重复候选。框显示分数阈值和评价时的IoU匹配门槛是不同参数。</p>
+<div class="work">实际数据可以从你现有的NEU-DET项目开始。先打开图片与标注，确认类别、坐标、图片尺寸，再查看预测图。原始标注到YOLO格式有转换过程，不要假定所有原始数据已经是YOLO文本格式。</div>
+<details><summary>练习：两个2×2框面积各为4，交集面积为1，IoU是多少？</summary><div><p>并集=4+4−1=7，所以IoU=1/7≈0.143。</p></div></details>
+<div class="complete"><input type="checkbox" id="p-yolo" data-progress><label for="p-yolo">我能解释检测框、归一化坐标和IoU。</label></div></section>
+
+<section class="chapter" id="metrics" data-title="10 指标与阈值"><span class="chapter-label">10 / METRICS</span><h2>误报、漏检和mAP怎么理解？</h2>
+<p>以一件工件一个最终判断为例：TP是缺陷件正确检出；FN是缺陷件漏检；FP是正常件误报；TN是正常件正确放行。</p>
+<div class="formula">Precision = TP / (TP + FP)    报警中有多少是真的
+Recall    = TP / (TP + FN)    缺陷件找到了多少
+FPR       = FP / (FP + TN)    正常件被误报的比例</div>
+<p>若TP=8、FP=2、FN=2、TN=8，则Precision=80%、Recall=80%、FPR=20%。分母不同，所以这三个值回答不同问题。分母为0时要明确标注未定义或采用约定，不能随意解释。</p>
+<p>检测AP概括某一类的精确率—召回率表现，mAP是多个类别AP的汇总。mAP@0.5与mAP@0.5:0.95有不同的框匹配IoU口径。AUROC则概括异常与正常分数在不同阈值下的排序表现；一个固定阈值下的误报、漏检仍需单独报告。</p>
+<div class="caution">若数据集没有独立正常工件图，就不能凭缺陷图片推算正常工件误报率。100个正常样本也不足以稳定估计0.1%的极低误报率。</div>
+<details><summary>练习：10件缺陷找出8件，同时10件正常里误报2件。Recall和FPR是多少？</summary><div><p>Recall=8/10=80%，FPR=2/10=20%。</p></div></details>
+<div class="complete"><input type="checkbox" id="p-metrics" data-progress><label for="p-metrics">我能根据TP、FP、FN、TN手算召回率和误报率。</label></div></section>
+
+<section class="chapter" id="anomaly" data-title="11 正常样本异常检测"><span class="chapter-label">11 / ANOMALY</span><h2>没有很多缺陷样本，怎样学习正常外观？</h2>
+<p>正常样本异常检测先学习合格工件的特征，再判断新图是否偏离正常模式。常见方法有正常特征库、教师—学生特征差和特征重建。它减少部分缺陷标注需求，但不能保证识别所有未知缺陷；真实测试仍需要相应标签。</p>
+<h3>把教师和学生想成两套特征提取器</h3><p>教师使用已有训练得到的知识；学生在正常图上学习模仿教师。测试时计算对应位置的特征差，差异较大的地方可能被标为异常。例如先将两个特征向量单位化，再计算<code>1 − 余弦相似度</code>。将不同位置的得分画出来，就得到异常热图。</p>
+<div class="box">LKDF-AD使用预训练教师和轻学生，以多尺度特征差进行异常评分。测试时教师与学生都运行；统计部署成本时，两者都要计入。EfficientAD使用轻量教师—学生结构并结合全局分支；它是另一套方法，训练数据和评价条件需各自记录。</div>
+<p><strong>少样本</strong>要说明少的是哪一部分。例如“4-shot正常训练”表示某类别用4张正常训练图；若另用20张正常图校准阈值，要同时报告这20张。预训练教师也包含先前数据中学到的信息。</p>
+<details><summary>练习：一张正常图换了更暗的灯，异常分数升高，能直接断定工件有缺陷吗？</summary><div><p>不能。模型分数可能受照明变化影响。应检查真实工件、正常样本分数分布和改变照明的对照结果。</p></div></details>
+<div class="complete"><input type="checkbox" id="p-anomaly" data-progress><label for="p-anomaly">我能解释正常训练图、教师学生差异和异常热图。</label></div></section>
+
+<section class="chapter" id="experiment" data-title="12 科研实验设计"><span class="chapter-label">12 / EXPERIMENT</span><h2>怎样让一个实验能回答问题？</h2>
+<p>先写一个可以观察的问题，再确定对照和评价方式。示例问题：<strong>同一异常模型在图片变暗时，原有阈值下误报会怎样变化？</strong></p>
+<div class="tablewrap"><table><thead><tr><th>要素</th><th>本例如何固定</th></tr></thead><tbody><tr><td>模型</td><td>同一个已训练检查点、相同预处理。</td></tr><tr><td>开发</td><td>用独立正常开发图选择一次阈值。</td></tr><tr><td>测试数据</td><td>使用与开发集分开的正常工件图和缺陷工件图，并确认真实标签；两类分别统计样本数。</td></tr><tr><td>测试条件</td><td>每张测试图分别保留原图，并生成数字亮度×0.8、×0.6的版本。</td></tr><tr><td>评价</td><td>同一阈值下，各条件用正常图计算FPR、用缺陷图计算Recall；另报AUROC、样本数与失败图。若缺少某一类，就不能计算依赖该类的指标。</td></tr></tbody></table></div>
+<p>三个版本来自同一张原图，是配对数据，不能当作三个独立工件。电脑调暗只能说明该数字扰动下的表现；真实曝光、噪声、反光和相机差异需要单独采集验证。</p>
+<p>每次记录：问题、数据清单、随机种子、代码/模型版本、实际参数、训练步数、硬件、评价条件和失败样例。单次结果适合流程检查；重复多个种子和批次，有助于观察波动。</p>
+<details><summary>练习：新方法训练100轮，对照方法只训练20轮，涨点能完全归因于新方法吗？</summary><div><p>不能。训练预算可能影响结果；应补充预算可比的对照，并记录训练与推理成本。</p></div></details>
+<div class="complete"><input type="checkbox" id="p-experiment" data-progress><label for="p-experiment">我能为一个问题列出变量、对照和记录项。</label></div></section>
+
+<section class="chapter" id="compression" data-title="13 剪枝蒸馏量化"><span class="chapter-label">13 / COMPRESSION</span><h2>模型怎样变轻，效果怎样验证？</h2>
+<div class="grid"><div class="tile"><b>结构化剪枝</b>实际删除部分通道等结构，依赖它的后续层也可能要同步调整；再通过训练恢复性能。</div><div class="tile"><b>知识蒸馏</b>训练学生学习教师的输出或特征。要确认推理阶段教师是否仍存在。</div><div class="tile"><b>量化</b>用较低精度近似数值，例如INT8。校准范围不合适可能放大误差或造成截断。</div><div class="tile"><b>真实测速</b>参数量、MAC和毫秒延迟是不同量；推理加速需要在目标硬件上测。</div></div>
+<p>例：把0.26近似到0.1间隔的刻度，可能得到0.3，误差0.04。这只是直觉例子；真实量化要考虑尺度、零点、截断范围及实际算子。训练后量化常称PTQ，训练中模拟量化影响称QAT。</p>
+<p>你的NEU-DET已有工程做过三种子对照：未剪枝基线mAP50为73.40%±0.50，轻度剪枝后微调为72.59%±0.36；320×320，最终FP32评价。这里是既有日志中的结果，不是本教程新训练，也不能推断RK3568速度。</p>
+<details><summary>练习：为什么需要“未剪枝但继续训练相同时间”的对照？</summary><div><p>额外训练本身也可能改变精度。匹配训练预算有助于分清恢复来自训练还是结构变化。</p></div></details>
+<div class="complete"><input type="checkbox" id="p-compression" data-progress><label for="p-compression">我能分别解释剪枝、蒸馏、量化以及各自的测量。</label></div></section>
+
+<section class="chapter" id="deploy" data-title="14 边缘部署"><span class="chapter-label">14 / DEPLOYMENT</span><h2>把模型放到设备上，需要验证什么？</h2>
+<p>CPU是通用处理器，GPU善于并行计算，NPU针对神经网络运算做加速。相同模型在不同设备上的结果和速度受软件、算子、精度、输入形状与内存等影响。</p>
+<div class="flow"><span>PyTorch</span><b>→</b><span>ONNX</span><b>→</b><span>RKNN转换</span><b>→</b><span>目标板运行</span><b>→</b><span>后处理</span></div>
+<p>ONNX是常见模型交换格式，RKNN是Rockchip工具链使用的模型格式。转换前后用<strong>同一输入</strong>检查输入颜色、布局、缩放和输出，再检查板上哪些算子实际运行在哪里。工具声明支持某平台，并不保证任意模型或任意形状都能成功部署。</p>
+<p>测量时分别记录：模型前向；包含前后处理的离线图片流程；真实相机采集到最终判定的完整流程。固定设备、输入和预热，并说明FP32/FP16/INT8等请求及实际执行精度；不要将GPU或其他板卡的时间写成RK3568实测。</p>
+<details><summary>练习：ONNX导出成功，是否意味着已完成RK3568部署？</summary><div><p>还需要RKNN转换、板端运行和输出一致性、精度与时间等检查；导出成功只证明前一环节完成。</p></div></details>
+<div class="complete"><input type="checkbox" id="p-deploy" data-progress><label for="p-deploy">我能画出模型转换链和完整检测链，并区分它们的计时范围。</label></div></section>
+
+<section class="chapter" id="reading" data-title="15 读论文与排错"><span class="chapter-label">15 / READING</span><h2>读论文和代码时，先抓住什么？</h2>
+<ol><li>问题：作者想改善什么实际困难？</li><li>输入与输出：模型看什么，给出什么结果，需要哪些标签？</li><li>方法：先用一句话解释，再沿方法图看数据流。</li><li>证据：看数据集、评价指标、输入尺寸、硬件和对照组。</li><li>限制：哪些条件与你不同？哪些部分可以先复现？</li></ol>
+<p>第一遍读摘要、问题图、方法图和主结果表；第二遍追训练设置与消融；第三遍再读关键代码或公式。引用的数据要回到原论文的表格和条件核对。</p>
+<h3>遇到报错，从哪里查？</h3><div class="tablewrap"><table><thead><tr><th>现象</th><th>先检查</th></tr></thead><tbody><tr><td>找不到文件</td><td>打印实际路径、当前工作目录和文件是否存在。</td></tr><tr><td>找不到模块</td><td>确认当前使用哪个Python环境，以及该环境是否装有所需包。</td></tr><tr><td>形状不匹配</td><td>打印输入、标签和模型输出的shape与dtype。</td></tr><tr><td>显存不足</td><td>查看输入尺寸、batch和其他占用；更改设置后记录对照条件。</td></tr><tr><td>loss不下降</td><td>先查数据/标签、输出形状、loss计算和学习率，不预先假定某个原因。</td></tr></tbody></table></div>
+<p>在你的现有工程中，先观察一组预测，再读结果与代码。<a href="04_可复现实验/实验选择与原理.html">打开5个实验的详细说明</a>；<a href="00_阅读报告/逐篇阅读器.html">打开论文阅读卡片</a>。</p>
+<details><summary>练习：两个论文的mAP和FPS都写在摘要里，可以直接比较谁更好吗？</summary><div><p>要先看任务、数据集和划分、指标、输入、硬件、精度及计时范围。条件不同，不能直接作为公平排名。</p></div></details>
+<div class="complete"><input type="checkbox" id="p-reading" data-progress><label for="p-reading">我能从一篇论文中找到问题、数据、方法和评价条件。</label></div></section>
+
+<section class="chapter" id="roadmap" data-title="八周学习安排"><span class="chapter-label">PLAN / 8 WEEKS</span><h2>八周学习安排：每周留下一个成果</h2>
+<p>按自己的课表调整；每周达到“检查标准”再进入下一步。运行项目之前先阅读项目说明并选择新输出目录。</p>
+<div class="tablewrap"><table><thead><tr><th>周</th><th>学习与动手</th><th>检查标准</th></tr></thead><tbody>
+<tr><td>1</td><td>Python变量、列表、函数和循环；完成第1节练习。</td><td>不用抄答案，自己写出按阈值判断一组分数的函数。</td></tr>
+<tr><td>2</td><td>向量、点积、均值、梯度直觉；NumPy形状和索引。</td><td>手算一个点积，解释[4,3,320,320]。</td></tr>
+<tr><td>3</td><td>成像、RGB/BGR、缩放；数据标签与划分。</td><td>画出相机到模型输入的过程，解释按工件分组。</td></tr>
+<tr><td>4</td><td>训练循环与第8节PyTorch示例。</td><td>独立运行、看到loss和验证记录，保存并重载模型；解释每一步。</td></tr>
+<tr><td>5</td><td>卷积、特征图、YOLO输入输出与标注。</td><td>读一张NEU-DET图和对应标签，手算一次框坐标与IoU。</td></tr>
+<tr><td>6</td><td>Precision、Recall、FPR、mAP与固定阈值。</td><td>用TP/FP/FN/TN手算指标；说明数据不足时结论边界。</td></tr>
+<tr><td>7</td><td>正常样本异常检测；阅读EfficientAD摘要和方法图。</td><td>画出教师—学生与热图；说明训练图和阈值校准图的区别。</td></tr>
+<tr><td>8</td><td>剪枝、蒸馏、量化和RK3568路线；复查已有E01工程。</td><td>写一页实验计划：变量、对照、记录、完成标准和硬件边界。</td></tr>
+</tbody></table></div>
+<p>完成后再选择一个实验深入。建议先看已有E01剪枝项目，再根据兴趣选择E02或E03；E04采集扰动和E05板端验证有明确前置条件。<a href="04_可复现实验/实验选择与原理.html">查看实验方案 ↗</a></p>
+</section>
+
+<section class="chapter" id="reference" data-title="术语与官方资料"><span class="chapter-label">REFERENCE / 继续查阅</span><h2>术语、参考资料和学习边界</h2>
+<div class="tablewrap"><table><thead><tr><th>术语</th><th>先这样理解</th></tr></thead><tbody>
+<tr><td>Tensor / shape</td><td>张量 / 多维数字的尺寸。</td></tr><tr><td>Epoch / batch</td><td>一轮数据遍历 / 一次处理的一批样本。</td></tr><tr><td>Loss / gradient</td><td>训练目标的偏差 / 参数变化对损失影响的方向与大小。</td></tr><tr><td>Overfitting</td><td>训练数据表现好，但未见数据表现不理想。</td></tr><tr><td>IoU / AP / mAP</td><td>框重叠比例 / 一类的精确率—召回表现 / 多类AP汇总。</td></tr><tr><td>AUROC / FPR</td><td>不同阈值下的排序评价 / 正常样本被误报比例。</td></tr><tr><td>Pruning / KD / PTQ</td><td>剪枝 / 知识蒸馏 / 训练后量化。</td></tr><tr><td>ONNX / RKNN</td><td>模型交换格式 / Rockchip工具链使用的模型格式。</td></tr></tbody></table></div>
+<h3>官方入门资料</h3><ul class="source-list"><li><a href="https://docs.python.org/3/tutorial/">Python官方教程</a>：语法、函数和数据结构；它默认读者有一定编程常识，可结合本教程学习。</li><li><a href="https://numpy.org/doc/stable/user/absolute_beginners.html">NumPy初学者指南</a>：数组、形状和索引。</li><li><a href="https://docs.pytorch.org/tutorials/beginner/basics/intro.html">PyTorch基础教程</a>：数据、模型、自动求导和训练。</li><li><a href="https://docs.opencv.org/4.x/d6/d00/tutorial_py_root.html">OpenCV-Python教程</a>：图像操作和处理。</li><li><a href="https://www.mvtec.com/research-teaching/datasets/mvtec-ad">MVTec AD官方数据集</a>：异常检测数据和说明。</li><li><a href="https://github.com/airockchip/rknn-toolkit2">RKNN Toolkit2官方仓库</a>：工具链与平台支持。</li></ul>
+<p>本教程介绍关键概念和一套可练习的入门路线；正式研究仍需结合教材、课程、原论文、真实数据和复现记录继续深入。页面可离线阅读，外部资料链接需联网。</p>
+</section>
+</main></div><footer class="footer">工业机器视觉系统基础课 · 教学示例和历史实验已分别标明 · 2026-11-01<br><a href="从这里开始.md">资料夹入口</a> · <a href="#course-start">回到课程开头</a></footer>
+<script>
+(()=>{
+ const sections=[...document.querySelectorAll('section[data-title]')];
+ for(const target of [document.getElementById('toc'),document.getElementById('mobile-toc')])for(const section of sections){const a=document.createElement('a');a.href='#'+section.id;a.textContent=section.dataset.title;target.appendChild(a)}
+ const boxes=[...document.querySelectorAll('[data-progress]')],key='cv-systematic-foundations-v1';let saved={},storage=true;
+ try{saved=JSON.parse(localStorage.getItem(key)||'{}')||{}}catch(e){storage=false}
+ boxes.forEach(b=>b.checked=!!saved[b.id]);
+ function refresh(){const count=boxes.filter(b=>b.checked).length;document.getElementById('progress').textContent=`已完成 ${count} / ${boxes.length} 节`;document.getElementById('mobile-progress').textContent=`${count} / ${boxes.length}`;if(storage){try{localStorage.setItem(key,JSON.stringify(Object.fromEntries(boxes.map(b=>[b.id,b.checked]))))}catch(e){storage=false}}}
+ boxes.forEach(b=>b.addEventListener('change',refresh));document.getElementById('reset-progress').addEventListener('click',()=>{boxes.forEach(b=>b.checked=false);refresh()});refresh();
+ for(const button of document.querySelectorAll('[data-copy]'))button.addEventListener('click',async()=>{const text=document.getElementById(button.dataset.copy).textContent;let ok=false;try{await navigator.clipboard.writeText(text);ok=true}catch(e){const area=document.createElement('textarea');area.value=text;area.style.position='fixed';area.style.left='-9999px';document.body.appendChild(area);area.select();try{ok=document.execCommand('copy')}catch(err){}area.remove()}const prior=button.textContent;button.textContent=ok?'已复制':'请手动选中复制';setTimeout(()=>button.textContent=prior,2500)});
+ const bar=document.getElementById('bar');function progress(){const max=document.documentElement.scrollHeight-innerHeight;bar.style.width=(max>0?100*scrollY/max:0)+'%'}addEventListener('scroll',progress,{passive:true});addEventListener('resize',progress);progress();
+})();
+</script></body></html>
